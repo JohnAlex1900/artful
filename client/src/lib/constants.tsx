@@ -205,8 +205,9 @@ export const PROCESS_STEPS = [
     subtitle: "Understanding Your Vision",
     description:
       "We begin with an in-depth consultation to understand your needs, preferences, lifestyle, and budget. This is where we listen carefully to your vision and assess the space's potential and constraints.",
-    image:
+    images: [
       "https://cdn.home-designing.com/wp-content/uploads/2022/03/round-rug-4.jpg",
+    ],
     features: [
       "Initial site visit and space assessment",
       "Detailed discussion of requirements and preferences",
@@ -219,7 +220,14 @@ export const PROCESS_STEPS = [
     subtitle: "Bringing Ideas to Life",
     description:
       "Our team creates detailed design concepts, mood boards, and 3D visualizations that bring your vision to life. We explore various options and refine the design until it perfectly matches your expectations.",
-    image: "https://foyr.com/learn/wp-content/uploads/2021/08/mood-boards.jpg",
+    images: [
+      "https://asset.skoiy.com/9b80a6f781ff336f/mjailr0pbt8d.jpg?w=970&q=90",
+      "https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto/gigs2/431641011/original/33237790e8895febccba38bd770647bcd00e88ad.png",
+      "https://professional3dservices.com/img/rendering/commercial-3d-interior-designing.webp",
+      "https://veeinteriors.co.ke/wp-content/uploads/2024/11/3d-render-interior-design-studio.jpg",
+      "https://www.roomsketcher.com/content/uploads/2021/12/2D-and-3D-Floor-Plan-BRA-Hus.jpg",
+      "https://s3images.coroflot.com/user_files/individual_files/688937_uhowt5lfzom2vztieoalnontr.jpg",
+    ],
     features: [
       "Mood boards and color palette development",
       "3D renderings and virtual walkthroughs",
@@ -232,8 +240,9 @@ export const PROCESS_STEPS = [
     subtitle: "Finalizing the Plan",
     description:
       "We present the complete design package for your review and approval. This includes detailed drawings, specifications, and a comprehensive project timeline. We make any necessary adjustments based on your feedback.",
-    image:
+    images: [
       "https://images.unsplash.com/photo-1625225230517-7426c1be750c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    ],
     features: [
       "Detailed design presentation",
       "Final revisions and adjustments",
@@ -246,7 +255,12 @@ export const PROCESS_STEPS = [
     subtitle: "Making It Reality",
     description:
       "Our skilled installation team brings the design to life with meticulous attention to detail. We coordinate all aspects of the installation process, ensuring quality execution and minimal disruption to your daily routine.",
-    image: "https://italdoors.com/wp-content/uploads/2024/08/IMG_1556-1.jpg",
+    images: [
+      "https://ikigaicollege.ac.ke/wp-content/uploads/2024/04/IMG_7307-1-1024x683.jpg",
+      "https://ikigaicollege.ac.ke/wp-content/uploads/2024/04/IMG_8964-1024x683.jpg",
+      "https://solcityinteriors.co.ke/wp-content/uploads/2023/02/residential-interior-design-1.jpg",
+      "https://jomatinteriordesigns.co.ke/wp-content/uploads/2024/11/pexels-heyho-7031735-1024x683.jpg",
+    ],
     features: [
       "Professional installation and coordination",
       "Quality control and finishing touches",
