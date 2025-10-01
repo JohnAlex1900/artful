@@ -16,4 +16,7 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist"), // ✅ frontend builds here
     emptyOutDir: true,
   },
+  server: {
+    allowedHosts: ["ead9abe0e5c1.ngrok-free.app"],
+  },
 });

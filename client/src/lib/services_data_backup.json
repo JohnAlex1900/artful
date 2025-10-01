@@ -1,0 +1,459 @@
+[
+  {
+    "title": "Commercial Interior Design",
+    "link": "/services/commercial",
+    "description": "Create impressive commercial environments that enhance productivity, reflect your brand identity, and leave lasting impressions on clients.",
+    "images": [
+      "https://images.unsplash.com/photo-1598300050882-5c44c9a4c45f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "subServices": [
+      {
+        "title": "Clubs",
+        "link": "/services/commercial/clubs",
+        "description": "Design vibrant and luxurious clubs.",
+        "images": [
+          "https://images.unsplash.com/photo-1611599534356-16c6d31f8df1?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Boutiques",
+        "link": "/services/commercial/boutiques",
+        "description": "Stylish and functional boutique spaces.",
+        "images": [
+          "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Schools",
+        "link": "/services/commercial/schools",
+        "description": "Inspiring educational spaces.",
+        "images": [
+          "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Hospitals",
+        "link": "/services/commercial/hospitals",
+        "description": "Efficient and calming hospital interiors.",
+        "images": [
+          "https://images.unsplash.com/photo-1588776814546-5cdb5ed0e6c0?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Salons & Spas",
+        "link": "/services/commercial/salons",
+        "description": "Elegant and relaxing interiors.",
+        "images": [
+          "https://images.unsplash.com/photo-1616628185565-6d89b99f1142?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Showrooms",
+        "link": "/services/commercial/showrooms",
+        "description": "Showcases that highlight your products.",
+        "images": [
+          "https://images.unsplash.com/photo-1616628185156-6d89b99f1143?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Hotels & Restaurants",
+        "link": "/services/commercial/hotels",
+        "description": "Luxurious and functional hospitality spaces.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269134-d157a9b2b1c7?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Malls",
+        "link": "/services/commercial/malls",
+        "description": "Commercial mall interior solutions.",
+        "images": [
+          "https://images.unsplash.com/photo-1613145996805-45c1f0a2675f?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Apartments",
+        "link": "/services/commercial/apartments",
+        "description": "Stylish and functional apartment designs.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154211-0a3a1b1d3c7f?auto=format&fit=crop&w=800&q=80"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Residential Interior Design",
+    "link": "/services/residential",
+    "description": "Transform homes into sophisticated living spaces that balance aesthetics, comfort, and functionality.",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154211-0a3a1b1d3c7f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1598300042030-7a45f1a3b6b7?auto=format&fit=crop&w=800&q=80"
+    ],
+    "subServices": [
+      {
+        "title": "Living Rooms",
+        "link": "/services/residential/living",
+        "description": "Elegant and cozy living rooms.",
+        "images": [
+          "https://images.unsplash.com/photo-1580584126609-8e78b1d4f9d7?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Bedrooms",
+        "link": "/services/residential/bedrooms",
+        "description": "Serene and stylish bedrooms.",
+        "images": [
+          "https://images.unsplash.com/photo-1598300042030-8c45f1a3b6c2?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Kitchens",
+        "link": "/services/residential/kitchens",
+        "description": "Functional and luxurious kitchens.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154211-1a3a1b1d3c8f?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Washrooms",
+        "link": "/services/residential/washrooms",
+        "description": "Modern and clean washroom designs.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154211-washroom?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Dining Rooms",
+        "link": "/services/residential/dining",
+        "description": "Elegant dining spaces for family and guests.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154211-dining?auto=format&fit=crop&w=800&q=80"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Gypsum Ceilings",
+    "link": "/services/gypsum",
+    "description": "Elevate your spaces with beautifully crafted gypsum ceiling designs and installations.",
+    "images": [
+      "https://images.unsplash.com/photo-1588776814000-5cdb5ed0e6d1?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1613145996805-45c1f0a2675g?auto=format&fit=crop&w=800&q=80"
+    ]
+  },
+  {
+    "title": "Wallpaper",
+    "link": "/services/wallpaper",
+    "description": "Stylish and modern wallpaper designs that transform walls into elegant features.",
+    "images": [
+      "https://images.unsplash.com/photo-1590490351001-abc12345def?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1601925269135-123abc456?auto=format&fit=crop&w=800&q=80"
+    ]
+  },
+  {
+    "title": "Window Blinds & Curtains",
+    "link": "/services/window-blinds",
+    "description": "Custom window treatments to complement your interior style and provide light control.",
+    "images": [
+      "https://images.unsplash.com/photo-1590490351200-abc6789?auto=format&fit=crop&w=800&q=80"
+    ],
+    "subServices": [
+      {
+        "title": "Window Blinds",
+        "link": "/services/window-blinds/blinds",
+        "description": "High-quality, functional, and stylish blinds.",
+        "images": [
+          "https://images.unsplash.com/photo-1590490351201-blinds1?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Curtains",
+        "link": "/services/window-blinds/curtains",
+        "description": "Elegant and versatile curtain designs.",
+        "images": [
+          "https://images.unsplash.com/photo-1590490351202-curtains1?auto=format&fit=crop&w=800&q=80"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Flooring Services",
+    "link": "/services/flooring",
+    "description": "Premium flooring solutions including hardwood, tiles, carpets, and luxury finishes.",
+    "images": [
+      "https://images.unsplash.com/photo-1601925269100-floor1?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1601925269101-floor2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "subServices": [
+      {
+        "title": "Wall to Wall Carpet",
+        "link": "/services/flooring/carpet",
+        "description": "Soft, durable wall-to-wall carpets.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269102-wallcarpet?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Artificial Green Carpet",
+        "link": "/services/flooring/artificial-carpet",
+        "description": "Eco-friendly artificial green carpets.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269103-artcarpet?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Mkeka wa Mbao",
+        "link": "/services/flooring/mkeka",
+        "description": "Traditional wooden mat flooring.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269104-mkeka?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Tile Work",
+        "link": "/services/flooring/tiles",
+        "description": "Stylish and durable tile installations.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269105-tiles?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Wooden Floors",
+        "link": "/services/flooring/wood",
+        "description": "Elegant hardwood flooring solutions.",
+        "images": [
+          "https://images.unsplash.com/photo-1601925269106-wood?auto=format&fit=crop&w=800&q=80"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Painting in Kenya",
+    "link": "/services/painting",
+    "description": "Professional painting services delivering flawless finishes for interior and exterior spaces.",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154311-paint1?auto=format&fit=crop&w=800&q=80"
+    ],
+    "subServices": [
+      {
+        "title": "General Painting",
+        "link": "/services/painting/general",
+        "description": "Interior and exterior painting.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154312-generalpaint?auto=format&fit=crop&w=800&q=80"
+        ]
+      },
+      {
+        "title": "Special Paint Effect",
+        "link": "/services/painting/effect",
+        "description": "Decorative and effect painting.",
+        "images": [
+          "https://images.unsplash.com/photo-1600585154313-specialpaint?auto=format&fit=crop&w=800&q=80"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Kitchen Cabinets & Wardrobes",
+    "link": "/services/cabinets",
+    "description": "Custom kitchen cabinets and wardrobes.",
+    "images": [
+      "https://images.unsplash.com/photo-1649261598938-8c2d1d3ecdb6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxLaXRjaGVuJTIwQ2FiaW5ldHMlMjAlMjYlMjBXYXJkcm9iZXN8ZW58MHx8fHwxNzU5MzAxOTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1636537478510-d3d720f46e2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxLaXRjaGVuJTIwQ2FiaW5ldHMlMjAlMjYlMjBXYXJkcm9iZXN8ZW58MHx8fHwxNzU5MzAxOTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1682450195449-32ab08ddf7e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxLaXRjaGVuJTIwQ2FiaW5ldHMlMjAlMjYlMjBXYXJkcm9iZXN8ZW58MHx8fHwxNzU5MzAxOTU2fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Office Partitioning Services",
+    "link": "/services/partitioning",
+    "description": "Partitioning solutions for office spaces.",
+    "images": [
+      "https://images.unsplash.com/photo-1758630737403-1bda34e3f98e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxPZmZpY2UlMjBQYXJ0aXRpb25pbmclMjBTZXJ2aWNlc3xlbnwwfHx8fDE3NTkzMDE5NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1646215993316-c98f642303ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxPZmZpY2UlMjBQYXJ0aXRpb25pbmclMjBTZXJ2aWNlc3xlbnwwfHx8fDE3NTkzMDE5NTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1730701878011-a423ec61c328?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxPZmZpY2UlMjBQYXJ0aXRpb25pbmclMjBTZXJ2aWNlc3xlbnwwfHx8fDE3NTkzMDE5NTh8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ],
+    "subServices": [
+      {
+        "title": "Frameless Glass",
+        "link": "/services/partitioning/frameless",
+        "description": "Modern frameless glass partitions.",
+        "images": [
+          "https://images.unsplash.com/photo-1648583169325-baad54257903?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxGcmFtZWxlc3MlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1687621905335-6553e9c7122b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxGcmFtZWxlc3MlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1732372121767-afd41cfb3dd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxGcmFtZWxlc3MlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjB8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        ]
+      },
+      {
+        "title": "Aluminium & Glass",
+        "link": "/services/partitioning/aluminium",
+        "description": "Aluminium and glass partitions.",
+        "images": [
+          "https://images.unsplash.com/photo-1676854121021-66b6a8ddb08d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxBbHVtaW5pdW0lMjAlMjYlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1704118548751-e41e7171a119?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxBbHVtaW5pdW0lMjAlMjYlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1704118548892-1b8d3703cbc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxBbHVtaW5pdW0lMjAlMjYlMjBHbGFzc3xlbnwwfHx8fDE3NTkzMDE5NjN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+        ]
+      },
+      {
+        "title": "Gypsum Partitioning",
+        "link": "/services/partitioning/gypsum",
+        "description": "Gypsum board partitions.",
+        "images": [
+          "https://images.unsplash.com/photo-1745192621767-0393e7161f11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxHeXBzdW0lMjBQYXJ0aXRpb25pbmd8ZW58MHx8fHwxNzU5MzAxOTY1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1746889028671-74515b0d7f92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxHeXBzdW0lMjBQYXJ0aXRpb25pbmd8ZW58MHx8fHwxNzU5MzAxOTY1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1730680467388-d1b21adac8dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxHeXBzdW0lMjBQYXJ0aXRpb25pbmd8ZW58MHx8fHwxNzU5MzAxOTY1fDA&ixlib=rb-4.1.0&q=80&w=1080"
+        ]
+      },
+      {
+        "title": "Other Partitionings",
+        "link": "/services/partitioning/other",
+        "description": "Other types of office partitions.",
+        "images": [
+          "https://images.unsplash.com/photo-1567793750641-17951da21da0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxPdGhlciUyMFBhcnRpdGlvbmluZ3N8ZW58MHx8fHwxNzU5MzAxOTY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1579623828015-bd63cc261a09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxPdGhlciUyMFBhcnRpdGlvbmluZ3N8ZW58MHx8fHwxNzU5MzAxOTY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+          "https://images.unsplash.com/photo-1656968677524-01adff859f7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxPdGhlciUyMFBhcnRpdGlvbmluZ3N8ZW58MHx8fHwxNzU5MzAxOTY3fDA&ixlib=rb-4.1.0&q=80&w=1080"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Home & Office Renovation",
+    "link": "/services/renovation",
+    "description": "Full renovation services for homes and offices.",
+    "images": [
+      "https://images.unsplash.com/photo-1646592491560-e121e097dcf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwUmVub3ZhdGlvbnxlbnwwfHx8fDE3NTkzMDE5Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1646592491550-6ef7a11ecc58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwUmVub3ZhdGlvbnxlbnwwfHx8fDE3NTkzMDE5Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1646592491741-e79ae5953486?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwUmVub3ZhdGlvbnxlbnwwfHx8fDE3NTkzMDE5Njl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "3D Logos & Signage",
+    "link": "/services/signage",
+    "description": "Custom 3D logos and signage.",
+    "images": [
+      "https://images.unsplash.com/photo-1671599872868-b9fea0c6ee85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHwzRCUyMExvZ29zJTIwJTI2JTIwU2lnbmFnZXxlbnwwfHx8fDE3NTkzMDE5NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1670660242564-b32cdef2192a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHwzRCUyMExvZ29zJTIwJTI2JTIwU2lnbmFnZXxlbnwwfHx8fDE3NTkzMDE5NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1651223969333-7a02ad74c4f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHwzRCUyMExvZ29zJTIwJTI2JTIwU2lnbmFnZXxlbnwwfHx8fDE3NTkzMDE5NzF8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Belka Cotton Paint",
+    "link": "/services/belka",
+    "description": "Belka cotton paint products.",
+    "images": [
+      "https://images.unsplash.com/photo-1675973255217-40d43271e777?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxCZWxrYSUyMENvdHRvbiUyMFBhaW50fGVufDB8fHx8MTc1OTMwMTk3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1635412126118-be3dcc5221f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxCZWxrYSUyMENvdHRvbiUyMFBhaW50fGVufDB8fHx8MTc1OTMwMTk3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1634755467513-5856893c0ac8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxCZWxrYSUyMENvdHRvbiUyMFBhaW50fGVufDB8fHx8MTc1OTMwMTk3NHww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Exterior Products & Services",
+    "link": "/services/exterior",
+    "description": "Exterior products and services.",
+    "images": [
+      "https://images.unsplash.com/photo-1630901480305-67762672cbf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxFeHRlcmlvciUyMFByb2R1Y3RzJTIwJTI2JTIwU2VydmljZXN8ZW58MHx8fHwxNzU5MzAxOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1665116583039-5ebba2c64c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxFeHRlcmlvciUyMFByb2R1Y3RzJTIwJTI2JTIwU2VydmljZXN8ZW58MHx8fHwxNzU5MzAxOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1566172228218-9c42cea6cb35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxFeHRlcmlvciUyMFByb2R1Y3RzJTIwJTI2JTIwU2VydmljZXN8ZW58MHx8fHwxNzU5MzAxOTc4fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Interior Design Consultant",
+    "link": "/services/consultant",
+    "description": "Professional interior design consultancy.",
+    "images": [
+      "https://images.unsplash.com/photo-1598549687090-31c1b6df7636?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxJbnRlcmlvciUyMERlc2lnbiUyMENvbnN1bHRhbnR8ZW58MHx8fHwxNzU5MzAxOTgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1734937743443-a50fff0c0b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxJbnRlcmlvciUyMERlc2lnbiUyMENvbnN1bHRhbnR8ZW58MHx8fHwxNzU5MzAxOTgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1753505889211-9cfbac527474?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxJbnRlcmlvciUyMERlc2lnbiUyMENvbnN1bHRhbnR8ZW58MHx8fHwxNzU5MzAxOTgwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Canvas Painting Kenya",
+    "link": "/services/canvas",
+    "description": "Custom canvas paintings.",
+    "images": [
+      "https://images.unsplash.com/photo-1662796246357-36ffa59acbca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxDYW52YXMlMjBQYWludGluZyUyMEtlbnlhfGVufDB8fHx8MTc1OTMwMTk4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1669035653112-ba45cb566776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxDYW52YXMlMjBQYWludGluZyUyMEtlbnlhfGVufDB8fHx8MTc1OTMwMTk4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1612373931332-9fbb9b2290a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxDYW52YXMlMjBQYWludGluZyUyMEtlbnlhfGVufDB8fHx8MTc1OTMwMTk4Mnww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Modern TV Units",
+    "link": "/services/tv-units",
+    "description": "Modern TV unit designs.",
+    "images": [
+      "https://images.unsplash.com/photo-1747979029543-be26879b5007?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxNb2Rlcm4lMjBUViUyMFVuaXRzfGVufDB8fHx8MTc1OTMwMTk4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1750657594788-3faf7c91a842?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxNb2Rlcm4lMjBUViUyMFVuaXRzfGVufDB8fHx8MTc1OTMwMTk4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1611718663049-4c39b6b1182e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxNb2Rlcm4lMjBUViUyMFVuaXRzfGVufDB8fHx8MTc1OTMwMTk4NHww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Wall to Wall Carpets",
+    "link": "/services/wall-carpet",
+    "description": "Custom wall-to-wall carpets.",
+    "images": [
+      "https://images.unsplash.com/photo-1672601629713-0cda743cc258?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxXYWxsJTIwdG8lMjBXYWxsJTIwQ2FycGV0c3xlbnwwfHx8fDE3NTkzMDE5ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1516110723075-c29d0b4e6cc1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxXYWxsJTIwdG8lMjBXYWxsJTIwQ2FycGV0c3xlbnwwfHx8fDE3NTkzMDE5ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1736865875785-2073deb7185c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxXYWxsJTIwdG8lMjBXYWxsJTIwQ2FycGV0c3xlbnwwfHx8fDE3NTkzMDE5ODd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Wall Mural",
+    "link": "/services/wall-mural",
+    "description": "Decorative wall murals.",
+    "images": [
+      "https://images.unsplash.com/photo-1631720171424-39f2446ef197?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxXYWxsJTIwTXVyYWx8ZW58MHx8fHwxNzU5MzAxOTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1581688110074-5c8116f97a63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxXYWxsJTIwTXVyYWx8ZW58MHx8fHwxNzU5MzAxOTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1549658039-6c8c77d32baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxXYWxsJTIwTXVyYWx8ZW58MHx8fHwxNzU5MzAxOTkwfDA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Canvas Wall Arts",
+    "link": "/services/wall-arts",
+    "description": "Custom wall art canvases.",
+    "images": [
+      "https://images.unsplash.com/photo-1677658992335-bfe2677dd45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxDYW52YXMlMjBXYWxsJTIwQXJ0c3xlbnwwfHx8fDE3NTkzMDE5OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1749492907706-04684b1d8549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxDYW52YXMlMjBXYWxsJTIwQXJ0c3xlbnwwfHx8fDE3NTkzMDE5OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1570061851151-7adc1853e16e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxDYW52YXMlMjBXYWxsJTIwQXJ0c3xlbnwwfHx8fDE3NTkzMDE5OTN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Landscaping",
+    "link": "/services/landscaping",
+    "description": "Landscaping and outdoor services.",
+    "images": [
+      "https://images.unsplash.com/photo-1734079692160-fcbe4be6ab96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxMYW5kc2NhcGluZ3xlbnwwfHx8fDE3NTkzMDE5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1605117882932-f9e32b03fea9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxMYW5kc2NhcGluZ3xlbnwwfHx8fDE3NTkzMDE5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1597201278257-3687be27d954?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxMYW5kc2NhcGluZ3xlbnwwfHx8fDE3NTkzMDE5OTR8MA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Floor Plans & 3D Renders",
+    "link": "/services/3d-renders",
+    "description": "Detailed floor plans and 3D renders.",
+    "images": [
+      "https://images.unsplash.com/photo-1627561204931-9e5140d994f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxGbG9vciUyMFBsYW5zJTIwJTI2JTIwM0QlMjBSZW5kZXJzfGVufDB8fHx8MTc1OTMwMTk5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1689307127721-bc2da981b5a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxGbG9vciUyMFBsYW5zJTIwJTI2JTIwM0QlMjBSZW5kZXJzfGVufDB8fHx8MTc1OTMwMTk5N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1610650394144-a778795cf585?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxGbG9vciUyMFBsYW5zJTIwJTI2JTIwM0QlMjBSZW5kZXJzfGVufDB8fHx8MTc1OTMwMTk5N3ww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "Home & Office Furnishings",
+    "link": "/services/furnishings",
+    "description": "Custom furnishings for home and office.",
+    "images": [
+      "https://images.unsplash.com/photo-1622673407900-392e656967c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwRnVybmlzaGluZ3N8ZW58MHx8fHwxNzU5MzAxOTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1696453423495-046a7d83bf55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwRnVybmlzaGluZ3N8ZW58MHx8fHwxNzU5MzAxOTk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1611817084000-13da78818a0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxIb21lJTIwJTI2JTIwT2ZmaWNlJTIwRnVybmlzaGluZ3N8ZW58MHx8fHwxNzU5MzAxOTk5fDA&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  },
+  {
+    "title": "AirBnBs",
+    "link": "/services/airbnb",
+    "description": "Furnishing solutions for Airbnb properties.",
+    "images": [
+      "https://images.unsplash.com/photo-1711111038456-118bceb8bbe0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwxfHxBaXJCbkJzfGVufDB8fHx8MTc1OTMwMjAwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1711111038517-f5d61fe63008?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwyfHxBaXJCbkJzfGVufDB8fHx8MTc1OTMwMjAwMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "https://images.unsplash.com/photo-1711111038475-0dc445eeb97e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4MTA5MTN8MHwxfHNlYXJjaHwzfHxBaXJCbkJzfGVufDB8fHx8MTc1OTMwMjAwMXww&ixlib=rb-4.1.0&q=80&w=1080"
+    ]
+  }
+]

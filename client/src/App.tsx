@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -16,16 +17,25 @@ import Loading from "@/components/loading";
 import PageTransition from "@/components/page-transition";
 import { usePageLoading } from "@/hooks/use-loading";
 import { useScrollToTop } from "@/hooks/use-scroll-to-top";
+import { SERVICE_PAGES } from "@/utils/servicePages"; // Static mapping of service pages
 
 function Router() {
   return (
     <Switch>
+      {/* Static routes */}
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
       <Route path="/design-process" component={DesignProcess} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
+
+      {/* Dynamic service pages */}
+      {Object.entries(SERVICE_PAGES).map(([path, Component]) => (
+        <Route key={path} path={path} component={Component} />
+      ))}
+
+      {/* Fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -42,9 +52,11 @@ function App() {
         <div className="min-h-screen flex flex-col">
           <Navigation />
           <main className="flex-1">
-            <PageTransition>
-              <Router />
-            </PageTransition>
+            <Suspense fallback={<Loading />}>
+              <PageTransition>
+                <Router />
+              </PageTransition>
+            </Suspense>
           </main>
           <Footer />
         </div>

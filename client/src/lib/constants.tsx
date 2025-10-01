@@ -1,3 +1,177 @@
+import { NavLink } from "@/types/navigation";
+export const NAV_LINKS: NavLink[] = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "About",
+    link: "/about",
+  },
+  {
+    title: "Services",
+    children: [
+      {
+        title: "Commercial Interior Design",
+        link: "/services/commercial",
+        children: [
+          { title: "Clubs", link: "/services/commercial/clubs" },
+          { title: "Boutiques", link: "/services/commercial/boutiques" },
+          { title: "Schools", link: "/services/commercial/schools" },
+          { title: "Hospitals", link: "/services/commercial/hospitals" },
+          { title: "Salons & Spas", link: "/services/commercial/salons" },
+          { title: "Showrooms", link: "/services/commercial/showrooms" },
+          {
+            title: "Hotels & Restaurants",
+            link: "/services/commercial/hotels",
+          },
+          { title: "Malls", link: "/services/commercial/malls" },
+          { title: "Apartments", link: "/services/commercial/apartments" },
+        ],
+      },
+      {
+        title: "Residential Interior Design",
+        link: "/services/residential",
+        children: [
+          { title: "Living Rooms", link: "/services/residential/living" },
+          { title: "Bedrooms", link: "/services/residential/bedrooms" },
+          { title: "Kitchens", link: "/services/residential/kitchens" },
+          { title: "Washrooms", link: "/services/residential/washrooms" },
+          { title: "Dining Rooms", link: "/services/residential/dining" },
+        ],
+      },
+      {
+        title: "Gypsum Ceilings",
+        link: "/services/gypsum",
+      },
+      {
+        title: "Wallpaper",
+        link: "/services/wallpaper",
+      },
+      {
+        title: "Window Blinds & Curtains",
+        link: "/services/window-blinds",
+        children: [
+          { title: "Window Blinds", link: "/services/window-blinds/blinds" },
+          { title: "Curtains", link: "/services/window-blinds/curtains" },
+        ],
+      },
+      {
+        title: "Flooring Services",
+        link: "/services/flooring",
+        children: [
+          { title: "Wall to Wall Carpet", link: "/services/flooring/carpet" },
+          {
+            title: "Artificial Green Carpet",
+            link: "/services/flooring/artificial-carpet",
+          },
+          { title: "Mkeka wa Mbao", link: "/services/flooring/mkeka" },
+          { title: "Tile Work", link: "/services/flooring/tiles" },
+          { title: "Wooden Floors", link: "/services/flooring/wood" },
+        ],
+      },
+      {
+        title: "Painting in Kenya",
+        link: "/services/painting",
+        children: [
+          { title: "General Painting", link: "/services/painting/general" },
+          { title: "Special Paint Effect", link: "/services/painting/effect" },
+        ],
+      },
+      {
+        title: "Kitchen Cabinets & Wardrobes",
+        link: "/services/cabinets",
+      },
+      {
+        title: "Office Partitioning Services",
+        link: "/services/partitioning",
+        children: [
+          {
+            title: "Frameless Glass",
+            link: "/services/partitioning/frameless",
+          },
+          {
+            title: "Aluminium & Glass",
+            link: "/services/partitioning/aluminium",
+          },
+          {
+            title: "Gypsum Partitioning",
+            link: "/services/partitioning/gypsum",
+          },
+          {
+            title: "Other Partitionings",
+            link: "/services/partitioning/other",
+          },
+        ],
+      },
+      {
+        title: "Home & Office Renovation",
+        link: "/services/renovation",
+      },
+      {
+        title: "3D Logos & Signage",
+        link: "/services/signage",
+      },
+      {
+        title: "Belka Cotton Paint",
+        link: "/services/belka",
+      },
+      {
+        title: "Exterior Products & Services",
+        link: "/services/exterior",
+      },
+      {
+        title: "Interior Design Consultant",
+        link: "/services/consultant",
+      },
+      {
+        title: "Canvas Painting Kenya",
+        link: "/services/canvas",
+      },
+      {
+        title: "Modern TV Units",
+        link: "/services/tv-units",
+      },
+      {
+        title: "Wall to Wall Carpets",
+        link: "/services/wall-carpet",
+      },
+      {
+        title: "Wall Mural",
+        link: "/services/wall-mural",
+      },
+      {
+        title: "Canvas Wall Arts",
+        link: "/services/wall-arts",
+      },
+      {
+        title: "Landscaping",
+        link: "/services/landscaping",
+      },
+      {
+        title: "Floor Plans & 3D Renders",
+        link: "/services/3d-renders",
+      },
+      {
+        title: "Home & Office Furnishings",
+        link: "/services/furnishings",
+      },
+      {
+        title: "AirBnBs",
+        link: "/services/airbnb",
+      },
+    ],
+  },
+  {
+    title: "Portfolio",
+    link: "/portfolio",
+  },
+  {
+    title: "Contact",
+    link: "/contact",
+  },
+];
+
 export const SERVICES = [
   {
     title: "Residential",

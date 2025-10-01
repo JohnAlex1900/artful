@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,11 +36,11 @@
   --sidebar-accent-foreground: hsl(24, 9.8%, 10%);
   --sidebar-border: hsl(20, 5.9%, 90%);
   --sidebar-ring: hsl(20, 14.3%, 4.1%);
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
   --font-mono: Menlo, monospace;
   --radius: 1.3rem;
-  
+
   /* Custom luxury color palette */
   --cream-50: hsl(30, 67%, 98%);
   --cream-100: hsl(30, 44%, 98%);
@@ -91,6 +91,30 @@
   --sidebar-ring: hsl(24, 5.7%, 82.9%);
 }
 
+/* reveal animations (global) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* when visible */
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* allow per-element delay via inline style or attribute */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.reveal-visible {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -101,20 +125,29 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
   }
 }
 
 @layer utilities {
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(45, 45, 45, 0.7) 0%, rgba(45, 45, 45, 0.4) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(45, 45, 45, 0.7) 0%,
+      rgba(45, 45, 45, 0.4) 100%
+    );
   }
-  
+
   .modal-backdrop {
     backdrop-filter: blur(5px);
   }
-  
+
   .service-card:hover {
     transform: translateY(-8px);
     transition: transform 0.3s ease;
@@ -130,23 +163,23 @@
 }
 
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes slideUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(40px); 
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
