@@ -148,7 +148,7 @@ export default function AdminPage() {
         setAuthLoading(false);
         toast({
           title: "Access denied",
-          description: "This account is not listed in VITE_ADMIN_EMAILS.",
+          description: "This account is not listed as an administrator.",
           variant: "destructive",
         });
         return;
