@@ -3,11 +3,31 @@ import { useLocation } from "wouter";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Footer from "@/components/footer"; // Your footer component
 import Reveal from "@/components/reveal";
+import { useQuery } from "@tanstack/react-query";
+import { getSiteContent } from "@/lib/cms";
+import type { ServiceNode } from "@/lib/site-content-schema";
 
 interface GalleryServicePageProps {
   title: string;
   description: string;
   images: string[];
+}
+
+function findServiceByTitle(nodes: ServiceNode[], serviceTitle: string): ServiceNode | null {
+  for (const node of nodes) {
+    if (node.title === serviceTitle) {
+      return node;
+    }
+
+    if (node.subServices?.length) {
+      const nestedResult = findServiceByTitle(node.subServices, serviceTitle);
+      if (nestedResult) {
+        return nestedResult;
+      }
+    }
+  }
+
+  return null;
 }
 
 export default function ServicePage({
@@ -17,6 +37,21 @@ export default function ServicePage({
 }: GalleryServicePageProps) {
   const [location] = useLocation();
   const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
+  const { data: siteContent } = useQuery({
+    queryKey: ["site-content"],
+    queryFn: getSiteContent,
+  });
+
+  const serviceOverride = siteContent
+    ? findServiceByTitle(siteContent.services, title)
+    : null;
+
+  const resolvedTitle = serviceOverride?.title ?? title;
+  const resolvedDescription = serviceOverride?.description ?? description;
+  const resolvedImages =
+    serviceOverride?.images?.length
+      ? serviceOverride.images
+      : images;
 
   const openFullscreen = (index: number) => setFullscreenIndex(index);
   const closeFullscreen = () => setFullscreenIndex(null);
@@ -24,14 +59,14 @@ export default function ServicePage({
   const prevImage = () => {
     if (fullscreenIndex === null) return;
     setFullscreenIndex((prev) =>
-      prev === 0 ? images.length - 1 : (prev as number) - 1
+      prev === 0 ? resolvedImages.length - 1 : (prev as number) - 1
     );
   };
 
   const nextImage = () => {
     if (fullscreenIndex === null) return;
     setFullscreenIndex((prev) =>
-      prev === images.length - 1 ? 0 : (prev as number) + 1
+      prev === resolvedImages.length - 1 ? 0 : (prev as number) + 1
     );
   };
 
@@ -62,10 +97,10 @@ export default function ServicePage({
       <section className="py-20 text-center">
         <Reveal>
           <h1 className="font-serif text-5xl md:text-6xl font-bold text-charcoal-800 mb-6">
-            {title}
+            {resolvedTitle}
           </h1>
           <p className="text-xl text-charcoal-600 max-w-3xl mx-auto">
-            {description}
+            {resolvedDescription}
           </p>
         </Reveal>
       </section>
@@ -73,7 +108,7 @@ export default function ServicePage({
       {/* Gallery */}
       <section className="py-10 container mx-auto px-4 lg:px-8">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {images.map((img, idx) => (
+          {resolvedImages.map((img, idx) => (
             <Reveal key={idx} delay={idx * 0.1}>
               <div
                 className="cursor-pointer overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
@@ -81,7 +116,7 @@ export default function ServicePage({
               >
                 <img
                   src={img}
-                  alt={`${title} ${idx + 1}`}
+                  alt={`${resolvedTitle} ${idx + 1}`}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -108,8 +143,8 @@ export default function ServicePage({
           </button>
 
           <img
-            src={images[fullscreenIndex]}
-            alt={`${title} fullscreen`}
+            src={resolvedImages[fullscreenIndex]}
+            alt={`${resolvedTitle} fullscreen`}
             className="max-w-full max-h-full object-contain"
           />
 

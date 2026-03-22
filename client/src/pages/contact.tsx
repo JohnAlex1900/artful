@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   Phone,
   Mail,
@@ -32,6 +32,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { getSiteContent } from "@/lib/cms";
+import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
 import { z } from "zod";
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
@@ -43,6 +45,13 @@ type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function Contact() {
   const { toast } = useToast();
+  const { data: siteContent } = useQuery({
+    queryKey: ["site-content"],
+    queryFn: getSiteContent,
+    staleTime: Infinity,
+  });
+
+  const contactData = siteContent?.contact || DEFAULT_SITE_CONTENT.contact;
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -116,13 +125,13 @@ export default function Contact() {
                       <h3 className="font-semibold text-charcoal-800 mb-2">
                         Phone
                       </h3>
-                      <p className="text-gold-500">LANDO W. TITUS</p>
-                      <p className="text-charcoal-600">+254 719 118 500</p>
-                      <p className="text-gold-500">TUMU MWAMINDI</p>
-                      <p className="text-charcoal-600">+254 727 166 425</p>
-                      <p className="text-charcoal-600 text-sm">
-                        Mon - Fri, 8:00 AM - 6:00 PM
-                      </p>
+                      {contactData.people.map((person, index) => (
+                        <div key={`person-${index}`}>
+                          <p className="text-gold-500">{person.name.toUpperCase()}</p>
+                          <p className="text-charcoal-600">{person.phone}</p>
+                        </div>
+                      ))}
+                      <p className="text-charcoal-600 text-sm">{contactData.officeHours}</p>
                     </div>
                   </div>
 
@@ -138,9 +147,7 @@ export default function Contact() {
                       <h3 className="font-semibold text-charcoal-800 mb-2">
                         Email
                       </h3>
-                      <p className="text-charcoal-600">
-                        info.craftarchitectures@gmail.com
-                      </p>
+                      <p className="text-charcoal-600">{contactData.email}</p>
                       <p className="text-charcoal-600 text-sm">
                         We'll respond within 24 hours
                       </p>
@@ -160,9 +167,13 @@ export default function Contact() {
                         Office
                       </h3>
                       <p className="text-charcoal-600">
-                        <b>Nairobi Office: </b>Ruiru Bypass, Nairobi
-                        <br />
-                        <b>Mombasa Office: </b>Ukunda / Diani, Kwale
+                        {contactData.offices.map((office, index) => (
+                          <div key={`office-${index}`}>
+                            <b>{office.city} Office: </b>
+                            {office.address}
+                            {index < contactData.offices.length - 1 && <br />}
+                          </div>
+                        ))}
                       </p>
                       <p className="text-charcoal-600 text-sm">
                         By appointment only
@@ -178,34 +189,26 @@ export default function Contact() {
                   Follow Us
                 </h3>
                 <div className="flex space-x-4" data-testid="social-links">
-                  <a
-                    href="#"
-                    className="w-12 h-12 bg-cream-200 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors"
-                    data-testid="link-facebook"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/artfulstructures_.ltd?igsh=a3NxNDJ5NTR6NmJ0"
-                    className="w-12 h-12 bg-cream-200 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors"
-                    data-testid="link-instagram"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="https://x.com/ARTFULSTRUCTURE"
-                    className="w-12 h-12 bg-cream-200 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors"
-                    data-testid="link-twitter"
-                  >
-                    <Twitter className="w-5 h-5" />
-                  </a>
-                  <a
-                    href="www.tiktok.com/@artfulstructuresltd"
-                    className="w-12 h-12 bg-cream-200 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors"
-                    data-testid="link-tiktok"
-                  >
-                    <SiTiktok className="w-5 h-5" />
-                  </a>
+                  {contactData.socialLinks.map((link) => {
+                    const getLinkIcon = () => {
+                      const name = link.name.toLowerCase();
+                      if (name.includes("facebook")) return <Facebook className="w-5 h-5" />;
+                      if (name.includes("instagram")) return <Instagram className="w-5 h-5" />;
+                      if (name.includes("twitter")) return <Twitter className="w-5 h-5" />;
+                      if (name.includes("tiktok")) return <SiTiktok className="w-5 h-5" />;
+                      return null;
+                    };
+                    return (
+                      <a
+                        key={link.name}
+                        href={link.url}
+                        className="w-12 h-12 bg-cream-200 rounded-full flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors"
+                        data-testid={`link-${link.name.toLowerCase()}`}
+                      >
+                        {getLinkIcon()}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

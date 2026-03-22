@@ -321,6 +321,10 @@ export const PORTFOLIO_PROJECTS = [
     ],
     description:
       "A welcoming entrance space that sets the tone for an exceptional guest experience. The lobby features elegant seating areas, ambient lighting, and sophisticated design elements that create a memorable first impression. Local art and materials connect guests to the destination while maintaining luxury standards.",
+    location: "Westlands, Nairobi",
+    size: "800 sq ft",
+    duration: "4 weeks",
+    client: "Boutique Hotel",
   },
   {
     id: "restaurant-design",
@@ -337,6 +341,10 @@ export const PORTFOLIO_PROJECTS = [
     ],
     description:
       "An intimate dining environment that enhances the culinary experience. The restaurant design features carefully planned acoustics, sophisticated lighting design, and premium materials that create the perfect atmosphere for fine dining. Every element works together to create a memorable dining experience.",
+    location: "Kilimani, Nairobi",
+    size: "1,500 sq ft",
+    duration: "8 weeks",
+    client: "Fine Dining Restaurant",
   },
   {
     id: "home-renovation",
@@ -353,6 +361,10 @@ export const PORTFOLIO_PROJECTS = [
     ],
     description:
       "A dramatic transformation of an outdated space into a modern family home. This comprehensive renovation included structural changes, updated finishes, and completely reimagined layouts. The result is a cohesive design that maximizes space, improves functionality, and creates a beautiful home for modern family living.",
+    location: "Runda, Nairobi",
+    size: "3,000 sq ft",
+    duration: "6 months",
+    client: "Private Residence",
   },
   {
     id: "office-renovation",
@@ -369,6 +381,10 @@ export const PORTFOLIO_PROJECTS = [
     ],
     description:
       "Converting a traditional office into a collaborative modern workspace. This transformation focused on creating flexible work areas, improving natural light distribution, and incorporating technology seamlessly into the design. The result is a productive, inspiring work environment that attracts and retains top talent.",
+    location: "Lavington, Nairobi",
+    size: "2,000 sq ft",
+    duration: "10 weeks",
+    client: "Tech Startup",
   },
 ];
 

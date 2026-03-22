@@ -4,51 +4,21 @@ import ServiceCard from "@/components/service-card";
 import { Button } from "@/components/ui/button";
 import { SERVICES } from "@/lib/constants";
 import Reveal from "@/components/reveal";
-
-const heroSlides = [
-  {
-    image:
-      "https://www.marthastewart.com/thmb/lxfu2-95SWCS0jwciHs1mkbsGUM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/modern-living-rooms-wb-1-bc45b0dc70e541f0ba40364ae6bd8421.jpg",
-    headline: "Modern Living Spaces",
-    subheadline: "Contemporary family homes that balance form and comfort.",
-    ctaText: "Explore Our Work",
-    ctaLink: "/portfolio",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/33512935/pexels-photo-33512935.jpeg",
-    headline: "Luxury Bedrooms",
-    subheadline: "Elegant, restful master bedrooms with premium finishes.",
-    ctaText: "Explore Our Work",
-    ctaLink: "/portfolio",
-  },
-  {
-    image:
-      "https://www.pakitchen.com/wp-content/uploads/2023/11/Elegant-Modern-Grey-Kitchen-Tour-Luxe-Design-and-Smart-Storage-Solutions-1-1500x1125.jpg",
-    headline: "Contemporary Kitchens",
-    subheadline: "Open-concept kitchens designed for cooking and entertaining.",
-    ctaText: "Explore Our Work",
-    ctaLink: "/portfolio",
-  },
-  {
-    image:
-      "https://furniturepalacekenya.com/wp-content/uploads/2024/01/0O2A3656.jpg",
-    headline: "Productive Workspaces",
-    subheadline: "Commercial interiors that inspire teams and clients.",
-    ctaText: "Explore Our Work",
-    ctaLink: "/portfolio",
-  },
-  {
-    image:
-      "https://media.houseandgarden.co.uk/photos/61894412d9ae96d083cd0fa2/16:9/w_2560%2Cc_limit/cms.jpg",
-    headline: "Premium Retail & Hospitality",
-    subheadline: "Memorable guest and shopper experiences shaped by design.",
-    ctaText: "Explore Our Work",
-    ctaLink: "/portfolio",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { getSiteContent } from "@/lib/cms";
+import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
 
 export default function Home() {
+  const { data: siteContent } = useQuery({
+    queryKey: ["site-content"],
+    queryFn: getSiteContent,
+  });
+
+  const heroSlides =
+    siteContent?.home.heroSlides?.length
+      ? siteContent.home.heroSlides
+      : DEFAULT_SITE_CONTENT.home.heroSlides;
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}

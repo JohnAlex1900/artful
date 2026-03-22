@@ -11,6 +11,7 @@ import Services from "@/pages/services";
 import DesignProcess from "@/pages/design-process";
 import Portfolio from "@/pages/portfolio";
 import Contact from "@/pages/contact";
+import Admin from "@/pages/admin";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import Loading from "@/components/loading";
@@ -18,6 +19,7 @@ import PageTransition from "@/components/page-transition";
 import { usePageLoading } from "@/hooks/use-loading";
 import { useScrollToTop } from "@/hooks/use-scroll-to-top";
 import { SERVICE_PAGES } from "@/utils/servicePages"; // Static mapping of service pages
+import { useLocation } from "wouter";
 
 function Router() {
   return (
@@ -29,6 +31,7 @@ function Router() {
       <Route path="/design-process" component={DesignProcess} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
+      <Route path="/admin" component={Admin} />
 
       {/* Dynamic service pages */}
       {Object.entries(SERVICE_PAGES).map(([path, Component]) => (
@@ -44,13 +47,15 @@ function Router() {
 function App() {
   const isLoading = usePageLoading();
   useScrollToTop();
+  const [location] = useLocation();
+  const isAdminRoute = location.startsWith("/admin");
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         {isLoading && <Loading />}
         <div className="min-h-screen flex flex-col">
-          <Navigation />
+          {!isAdminRoute ? <Navigation /> : null}
           <main className="flex-1">
             <Suspense fallback={<Loading />}>
               <PageTransition>
@@ -58,7 +63,7 @@ function App() {
               </PageTransition>
             </Suspense>
           </main>
-          <Footer />
+          {!isAdminRoute ? <Footer /> : null}
         </div>
         <Toaster />
       </TooltipProvider>

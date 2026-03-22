@@ -1,9 +1,20 @@
 import { Lightbulb, Heart, CheckCircle } from "lucide-react";
 import { COMPANY_VALUES } from "@/lib/constants";
 import Reveal from "@/components/reveal"; // ✅ added
+import { useQuery } from "@tanstack/react-query";
+import { getSiteContent } from "@/lib/cms";
+import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
 
 export default function About() {
   const getIcon = (iconName: string) => {
+      const { data: siteContent } = useQuery({
+        queryKey: ["site-content"],
+        queryFn: getSiteContent,
+        staleTime: Infinity,
+      });
+
+      const aboutData = siteContent?.about || DEFAULT_SITE_CONTENT.about;
+
     switch (iconName) {
       case "lightbulb":
         return <Lightbulb className="w-8 h-8 text-white" />;
@@ -24,14 +35,12 @@ export default function About() {
           <div className="text-center mb-16">
             <Reveal>
               <h1 className="font-serif text-5xl md:text-6xl font-bold text-charcoal-800 mb-6">
-                About{" "}
-                <span className="text-gold-500">Artful Structures Limited</span>
+                {aboutData.heroTitle}
               </h1>
             </Reveal>
             <Reveal delay={0.15}>
               <p className="text-xl text-charcoal-600 max-w-3xl mx-auto">
-                Founded on the belief that exceptional design has the power to
-                transform lives
+                {aboutData.heroSubtitle}
               </p>
             </Reveal>
           </div>
@@ -41,25 +50,16 @@ export default function About() {
             <div className="space-y-6">
               <Reveal>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal-800">
-                  Our Journey
+                  {aboutData.journeyTitle}
                 </h2>
               </Reveal>
-              <Reveal delay={0.1}>
-                <p className="text-lg text-charcoal-600 leading-relaxed">
-                  Artful Structures Limited was born from a passion for creating
-                  spaces that inspire and elevate. Founded in 2010, we started
-                  as a small team of dedicated designers with a shared vision:
-                  to make exceptional design accessible to everyone.
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="text-lg text-charcoal-600 leading-relaxed">
-                  Over the years, we've grown into a full-service design firm,
-                  but our core philosophy remains unchanged. We believe that
-                  every space, whether residential or commercial, should reflect
-                  the personality and needs of those who inhabit it.
-                </p>
-              </Reveal>
+              {aboutData.journeyStory.map((story, index) => (
+                <Reveal key={`story-${index}`} delay={0.1 + index * 0.1}>
+                  <p className="text-lg text-charcoal-600 leading-relaxed">
+                    {story}
+                  </p>
+                </Reveal>
+              ))}
 
               {/* Stats */}
               <div
@@ -93,7 +93,7 @@ export default function About() {
             {/* Studio Image */}
             <Reveal delay={0.4}>
               <img
-                src="https://shiftersmovers.com/wp-content/uploads/2020/08/interior-5_032a01fa0_4062.jpg"
+                src={aboutData.studioImage}
                 alt="Our design studio"
                 className="rounded-2xl shadow-lg w-full h-auto"
                 data-testid="img-studio"
@@ -106,13 +106,12 @@ export default function About() {
             <div className="text-center mb-12">
               <Reveal>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-charcoal-800 mb-4">
-                  Our Mission & Values
+                  Our Mission
                 </h2>
               </Reveal>
               <Reveal delay={0.15}>
                 <p className="text-lg text-charcoal-600 max-w-3xl mx-auto">
-                  We're driven by core values that guide every project and
-                  client relationship
+                  {aboutData.missionStatement}
                 </p>
               </Reveal>
             </div>

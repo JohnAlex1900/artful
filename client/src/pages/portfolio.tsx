@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import PortfolioModal from "@/components/portfolio-modal";
-import { PORTFOLIO_PROJECTS } from "@/lib/constants";
 import Reveal from "@/components/reveal";
+import { useQuery } from "@tanstack/react-query";
+import { getSiteContent } from "@/lib/cms";
+import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
 
 type Category =
   | "all"
@@ -17,6 +19,16 @@ export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const { data: siteContent } = useQuery({
+    queryKey: ["site-content"],
+    queryFn: getSiteContent,
+  });
+
+  const projects =
+    siteContent?.portfolio.projects?.length
+      ? siteContent.portfolio.projects
+      : DEFAULT_SITE_CONTENT.portfolio.projects;
+
   const categories = [
     { key: "all" as Category, label: "All Projects" },
     { key: "residential" as Category, label: "Residential" },
@@ -27,8 +39,8 @@ export default function Portfolio() {
 
   const filteredProjects =
     activeCategory === "all"
-      ? PORTFOLIO_PROJECTS
-      : PORTFOLIO_PROJECTS.filter(
+      ? projects
+      : projects.filter(
           (project) => project.category === activeCategory
         );
 
