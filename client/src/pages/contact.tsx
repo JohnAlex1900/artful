@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
   Phone,
   Mail,
@@ -32,8 +32,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { insertContactSubmissionSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
-import { getSiteContent } from "@/lib/cms";
-import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
+import { useResolvedSiteContent } from "@/lib/cms-preview";
 import { z } from "zod";
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
@@ -45,13 +44,9 @@ type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function Contact() {
   const { toast } = useToast();
-  const { data: siteContent } = useQuery({
-    queryKey: ["site-content"],
-    queryFn: getSiteContent,
-    staleTime: Infinity,
-  });
+  const siteContent = useResolvedSiteContent();
 
-  const contactData = siteContent?.contact || DEFAULT_SITE_CONTENT.contact;
+  const contactData = siteContent.contact;
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -92,23 +87,23 @@ export default function Contact() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Banner */}
-      <section className="py-20 bg-white">
+      <section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="font-serif text-5xl md:text-6xl font-bold text-charcoal-800 mb-6">
+          <div className="text-center mb-10 md:mb-16">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl font-bold text-charcoal-800 mb-4 md:mb-6 leading-tight">
               Let's <span className="text-gold-500">Talk</span>
             </h1>
-            <p className="text-xl text-charcoal-600 max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-charcoal-600 max-w-3xl mx-auto leading-relaxed">
               Ready to transform your space? Get in touch to discuss your
               project and discover how we can bring your vision to life
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-16 max-w-6xl mx-auto">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               <div>
-                <h2 className="font-serif text-3xl font-bold text-charcoal-800 mb-8">
+                <h2 className="font-serif text-2xl md:text-3xl font-bold text-charcoal-800 mb-6 md:mb-8">
                   Get in Touch
                 </h2>
 
@@ -166,15 +161,14 @@ export default function Contact() {
                       <h3 className="font-semibold text-charcoal-800 mb-2">
                         Office
                       </h3>
-                      <p className="text-charcoal-600">
+                      <div className="text-charcoal-600 space-y-1">
                         {contactData.offices.map((office, index) => (
                           <div key={`office-${index}`}>
                             <b>{office.city} Office: </b>
                             {office.address}
-                            {index < contactData.offices.length - 1 && <br />}
                           </div>
                         ))}
-                      </p>
+                      </div>
                       <p className="text-charcoal-600 text-sm">
                         By appointment only
                       </p>
@@ -188,7 +182,7 @@ export default function Contact() {
                 <h3 className="font-semibold text-charcoal-800 mb-4">
                   Follow Us
                 </h3>
-                <div className="flex space-x-4" data-testid="social-links">
+                <div className="flex flex-wrap gap-3" data-testid="social-links">
                   {contactData.socialLinks.map((link) => {
                     const getLinkIcon = () => {
                       const name = link.name.toLowerCase();
@@ -214,8 +208,8 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-cream-50 rounded-3xl p-8">
-              <h2 className="font-serif text-2xl font-bold text-charcoal-800 mb-6">
+            <div className="bg-cream-50 rounded-3xl p-5 md:p-8">
+              <h2 className="font-serif text-xl md:text-2xl font-bold text-charcoal-800 mb-5 md:mb-6">
                 Send us a Message
               </h2>
 

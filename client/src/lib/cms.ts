@@ -37,6 +37,12 @@ function mergeWithDefaults(raw: unknown): SiteContent {
         candidate?.home?.heroSlides?.length
           ? candidate.home.heroSlides
           : DEFAULT_SITE_CONTENT.home.heroSlides,
+      expertise:
+        candidate?.home?.expertise ?? DEFAULT_SITE_CONTENT.home.expertise,
+      aboutTeaser:
+        candidate?.home?.aboutTeaser ?? DEFAULT_SITE_CONTENT.home.aboutTeaser,
+      ctaStrip:
+        candidate?.home?.ctaStrip ?? DEFAULT_SITE_CONTENT.home.ctaStrip,
     },
     portfolio: {
       projects:

@@ -4,11 +4,11 @@ import { SiTiktok } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal-800 text-cream-100 py-16">
+    <footer className="bg-charcoal-800 text-cream-100 py-12 md:py-16">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10 md:mb-12">
           {/* Company Info */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <div className="mb-4">
               <div className="text-2xl md:text-3xl font-serif font-bold leading-tight">
                 <span className="text-cream-100">ARTFUL</span>
@@ -46,7 +46,7 @@ export default function Footer() {
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="www.tiktok.com/@artfulstructuresltd"
+                href="https://www.tiktok.com/@artfulstructuresltd"
                 className="w-10 h-10 bg-cream-700 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors"
                 data-testid="link-social-tiktok"
               >
@@ -168,10 +168,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-cream-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-cream-200 text-sm mb-4 md:mb-0">
+            <p className="text-cream-200 text-xs md:text-sm mb-4 md:mb-0 text-center md:text-left">
               © 2025 Artful Structures Limited. All rights reserved.
             </p>
-            <div className="flex space-x-6 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
               <a
                 href="#"
                 className="text-cream-200 hover:text-gold-500 transition-colors"

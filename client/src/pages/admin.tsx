@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowDown, ArrowUp, Plus, Save, Trash2, LogOut, ShieldAlert, Upload } from "lucide-react";
+import { ArrowDown, ArrowUp, Plus, Save, Trash2, LogOut, ShieldAlert, Upload, Monitor, Smartphone, Eye, EyeOff } from "lucide-react";
 import { auth, firebaseMissingConfig, isFirebaseConfigured } from "@/lib/firebase";
 import {
   getCmsHistory,
@@ -13,11 +13,18 @@ import {
 } from "@/lib/cms";
 import { siteContentSchema, type SiteContent, type ServiceNode } from "@/lib/site-content-schema";
 import { DEFAULT_SITE_CONTENT } from "@/lib/site-content-defaults";
+import { CmsPreviewProvider } from "@/lib/cms-preview";
 import { uploadCmsImage } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import HomePage from "@/pages/home";
+import PortfolioPage from "@/pages/portfolio";
+import ServicesPage from "@/pages/services";
+import AboutPage from "@/pages/about";
+import ContactPage from "@/pages/contact";
+import { SERVICE_PAGES } from "@/utils/servicePages";
 
 type FlatServiceNode = {
   path: number[];
@@ -96,6 +103,8 @@ export default function AdminPage() {
     "home" | "portfolio" | "services" | "about" | "contact" | "servicesLanding" | "history"
   >("home");
   const [showAdvancedJson, setShowAdvancedJson] = useState(false);
+  const [previewDevice, setPreviewDevice] = useState<"desktop" | "mobile">("desktop");
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const [draft, setDraft] = useState<SiteContent>(DEFAULT_SITE_CONTENT);
   const [jsonDraft, setJsonDraft] = useState(JSON.stringify(DEFAULT_SITE_CONTENT, null, 2));
@@ -356,6 +365,27 @@ export default function AdminPage() {
     }));
   };
 
+  const addHomeExpertiseCard = () => {
+    setDraft((prev) => ({
+      ...prev,
+      home: {
+        ...prev.home,
+        expertise: {
+          ...prev.home.expertise,
+          cards: [
+            ...prev.home.expertise.cards,
+            {
+              title: "New Expertise Card",
+              description: "Describe what this service includes.",
+              image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd",
+              link: "/portfolio",
+            },
+          ],
+        },
+      },
+    }));
+  };
+
   const addServiceLandingCard = () => {
     setDraft((prev) => ({
       ...prev,
@@ -442,6 +472,194 @@ export default function AdminPage() {
   };
 
   const flatServices = useMemo(() => flattenServices(draft.services), [draft.services]);
+  const FirstServiceDetailPage = useMemo(() => {
+    const first = Object.values(SERVICE_PAGES)[0];
+    return first ?? null;
+  }, []);
+
+  const renderExactPreview = () => {
+    if (activeSection === "home") {
+      return <HomePage />;
+    }
+
+    if (activeSection === "portfolio") {
+      return <PortfolioPage />;
+    }
+
+    if (activeSection === "servicesLanding") {
+      return <ServicesPage />;
+    }
+
+    if (activeSection === "about") {
+      return <AboutPage />;
+    }
+
+    if (activeSection === "contact") {
+      return <ContactPage />;
+    }
+
+    if (activeSection === "services") {
+      if (!FirstServiceDetailPage) {
+        return (
+          <div className="p-6">
+            <h3 className="font-serif text-2xl text-charcoal-800 mb-2">Service Detail Preview</h3>
+            <p className="text-sm text-charcoal-600">No service detail page is currently registered.</p>
+          </div>
+        );
+      }
+
+      return (
+        <Suspense fallback={<div className="p-6 text-sm text-charcoal-600">Loading service page preview...</div>}>
+          <FirstServiceDetailPage />
+        </Suspense>
+      );
+    }
+
+    return (
+      <div className="p-6">
+        <h3 className="font-serif text-2xl text-charcoal-800 mb-2">Version History</h3>
+        <p className="text-sm text-charcoal-600">Preview focuses on editable website pages. Select a page section to see exact layout preview.</p>
+      </div>
+    );
+  };
+
+  const renderFocusedMobilePreview = () => {
+    if (activeSection === "home") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          <div className="rounded-xl overflow-hidden bg-white border border-cream-200 shadow-sm">
+            <img src={draft.home.heroSlides[0]?.image} alt="Hero preview" className="w-full h-44 object-cover" />
+            <div className="p-3">
+              <p className="text-[11px] uppercase tracking-wide text-charcoal-500 mb-1">Hero Banner</p>
+              <h3 className="font-serif text-xl text-charcoal-800 leading-tight">{draft.home.heroSlides[0]?.headline}</h3>
+              <p className="text-sm text-charcoal-600 mt-1 leading-relaxed">{draft.home.heroSlides[0]?.subheadline}</p>
+            </div>
+          </div>
+
+          <div className="rounded-xl bg-white border border-cream-200 shadow-sm p-3">
+            <p className="text-[11px] uppercase tracking-wide text-charcoal-500 mb-2">Expertise</p>
+            <h3 className="font-serif text-lg text-charcoal-800">{draft.home.expertise.title}</h3>
+            <p className="text-sm text-charcoal-600 leading-relaxed">{draft.home.expertise.subtitle}</p>
+            <div className="mt-3 space-y-2">
+              {draft.home.expertise.cards.slice(0, 4).map((card, index) => (
+                <div key={`mobile-home-card-${index}`} className="border border-cream-200 rounded-lg overflow-hidden">
+                  <img src={card.image} alt={card.title} className="w-full h-24 object-cover" />
+                  <div className="p-2">
+                    <p className="font-semibold text-sm text-charcoal-800">{card.title}</p>
+                    <p className="text-xs text-charcoal-600 line-clamp-2 leading-relaxed">{card.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl bg-white border border-cream-200 shadow-sm p-3">
+            <p className="text-[11px] uppercase tracking-wide text-charcoal-500 mb-2">About Teaser + CTA</p>
+            <h3 className="font-serif text-lg text-charcoal-800 leading-tight">{draft.home.aboutTeaser.title}</h3>
+            <p className="text-sm text-charcoal-600 mt-1 leading-relaxed">{draft.home.aboutTeaser.body}</p>
+            <img src={draft.home.aboutTeaser.image} alt="About teaser" className="w-full h-32 object-cover rounded-lg mt-2" />
+            <div className="mt-3 p-3 rounded-lg bg-charcoal-800 text-white">
+              <p className="font-serif text-base">{draft.home.ctaStrip.title}</p>
+              <p className="text-xs text-cream-100 mt-1">{draft.home.ctaStrip.subtitle}</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (activeSection === "portfolio") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          {draft.portfolio.projects.slice(0, 6).map((project) => (
+            <div key={`mobile-portfolio-${project.id}`} className="rounded-xl overflow-hidden bg-white border border-cream-200 shadow-sm">
+              <img src={project.images[0]} alt={project.title} className="w-full h-36 object-cover" />
+              <div className="p-3">
+                <p className="text-[11px] uppercase tracking-wide text-gold-600">{project.categoryLabel}</p>
+                <p className="font-serif text-lg text-charcoal-800 leading-tight">{project.title}</p>
+                <p className="text-xs text-charcoal-600 line-clamp-3 leading-relaxed mt-1">{project.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (activeSection === "services") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          {flatServices.slice(0, 6).map((service) => (
+            <div key={`mobile-service-${service.path.join("-")}`} className="rounded-xl bg-white border border-cream-200 shadow-sm p-3">
+              <p className="font-serif text-lg text-charcoal-800 leading-tight">{service.title}</p>
+              <p className="text-sm text-charcoal-600 line-clamp-3 leading-relaxed mt-1">{service.description}</p>
+              {service.images[0] ? (
+                <img src={service.images[0]} alt={service.title} className="w-full h-28 object-cover rounded-lg mt-2" />
+              ) : null}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (activeSection === "about") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          <div className="rounded-xl bg-white border border-cream-200 shadow-sm p-3">
+            <p className="text-[11px] uppercase tracking-wide text-charcoal-500 mb-1">About</p>
+            <h3 className="font-serif text-xl text-charcoal-800 leading-tight">{draft.about.heroTitle}</h3>
+            <p className="text-sm text-charcoal-600 mt-2 leading-relaxed">{draft.about.heroSubtitle}</p>
+            <img src={draft.about.studioImage} alt="Studio" className="w-full h-40 object-cover rounded-lg mt-3" />
+            <p className="text-sm text-charcoal-700 mt-3 leading-relaxed">{draft.about.missionStatement}</p>
+          </div>
+        </div>
+      );
+    }
+
+    if (activeSection === "contact") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          <div className="rounded-xl bg-white border border-cream-200 shadow-sm p-3">
+            <p className="text-[11px] uppercase tracking-wide text-charcoal-500 mb-2">Contact</p>
+            <p className="text-sm text-charcoal-700"><span className="font-semibold">Email:</span> {draft.contact.email}</p>
+            <p className="text-sm text-charcoal-700 mt-1"><span className="font-semibold">Hours:</span> {draft.contact.officeHours}</p>
+            <div className="mt-3 space-y-2">
+              {draft.contact.people.map((person, index) => (
+                <div key={`mobile-contact-${index}`} className="border border-cream-200 rounded-lg p-2">
+                  <p className="font-semibold text-sm text-charcoal-800">{person.name}</p>
+                  <p className="text-xs text-charcoal-600">{person.phone}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (activeSection === "servicesLanding") {
+      return (
+        <div className="bg-cream-50 min-h-full p-3 space-y-3">
+          {draft.servicesLanding.cards.slice(0, 6).map((card) => (
+            <div key={`mobile-landing-${card.id}`} className="rounded-xl overflow-hidden bg-white border border-cream-200 shadow-sm">
+              <img src={card.image} alt={card.title} className="w-full h-32 object-cover" />
+              <div className="p-3">
+                <p className="font-serif text-lg text-charcoal-800 leading-tight">{card.title}</p>
+                <p className="text-sm text-gold-600">{card.subtitle}</p>
+                <p className="text-xs text-charcoal-600 line-clamp-3 mt-1 leading-relaxed">{card.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div className="bg-cream-50 min-h-full p-4">
+        <div className="rounded-xl bg-white border border-cream-200 shadow-sm p-4">
+          <h3 className="font-serif text-lg text-charcoal-800">Version History</h3>
+          <p className="text-sm text-charcoal-600 mt-1">Select another section to see a focused mobile preview.</p>
+        </div>
+      </div>
+    );
+  };
 
   if (!isFirebaseConfigured) {
     return (
@@ -539,7 +757,7 @@ export default function AdminPage() {
         <div className="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between gap-4">
           <div>
             <h1 className="font-serif text-2xl text-charcoal-800">Artful CMS Admin</h1>
-            <p className="text-sm text-charcoal-600">Manage hero slides, portfolio, and all services images in one place.</p>
+            <p className="text-sm text-charcoal-600">Manage full website page content, images, and ordering in one place.</p>
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" onClick={logout}>
@@ -570,13 +788,48 @@ export default function AdminPage() {
               </Button>
             ))}
           </div>
+
+          <div className="mt-5 pt-5 border-t border-cream-200 flex flex-wrap items-center gap-3">
+            <Button
+              variant={previewOpen ? "default" : "outline"}
+              className={previewOpen ? "bg-charcoal-800 hover:bg-charcoal-700" : ""}
+              onClick={() => setPreviewOpen((prev) => !prev)}
+            >
+              {previewOpen ? <EyeOff className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
+              {previewOpen ? "Hide Preview" : "Open Live Preview"}
+            </Button>
+
+            {previewOpen ? (
+              <>
+                <Button
+                  variant={previewDevice === "desktop" ? "default" : "outline"}
+                  className={previewDevice === "desktop" ? "bg-charcoal-800 hover:bg-charcoal-700" : ""}
+                  onClick={() => setPreviewDevice("desktop")}
+                >
+                  <Monitor className="w-4 h-4 mr-2" />
+                  Desktop
+                </Button>
+                <Button
+                  variant={previewDevice === "mobile" ? "default" : "outline"}
+                  className={previewDevice === "mobile" ? "bg-charcoal-800 hover:bg-charcoal-700" : ""}
+                  onClick={() => setPreviewDevice("mobile")}
+                >
+                  <Smartphone className="w-4 h-4 mr-2" />
+                  Mobile
+                </Button>
+              </>
+            ) : null}
+          </div>
         </section>
+
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_440px] items-start">
+          <div className="space-y-10">
 
         <section className={`bg-white rounded-2xl p-6 shadow-sm border border-cream-200 ${activeSection !== "home" ? "hidden" : ""}`}>
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="font-serif text-2xl text-charcoal-800">Home Page Banners</h2>
-              <p className="text-sm text-charcoal-600">Update headline banners shown on your homepage.</p>
+              <h2 className="font-serif text-2xl text-charcoal-800">Home Page Editor</h2>
+              <p className="text-sm text-charcoal-600">Edit hero, expertise cards, about teaser, and bottom CTA strip.</p>
             </div>
             <Button onClick={addHeroSlide} variant="outline">
               <Plus className="w-4 h-4 mr-2" />
@@ -750,6 +1003,525 @@ export default function AdminPage() {
                 </div>
               </div>
             ))}
+
+            <div className="border-t border-cream-200 pt-8 space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h3 className="font-serif text-xl text-charcoal-800">Expertise Section</h3>
+                  <p className="text-sm text-charcoal-600">This is the section under the hero with 4 service cards.</p>
+                </div>
+                <Button variant="outline" onClick={addHomeExpertiseCard}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Expertise Card
+                </Button>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Section Title</label>
+                  <Input
+                    value={draft.home.expertise.title}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          expertise: {
+                            ...prev.home.expertise,
+                            title: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Section Subtitle</label>
+                  <Textarea
+                    value={draft.home.expertise.subtitle}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          expertise: {
+                            ...prev.home.expertise,
+                            subtitle: value,
+                          },
+                        },
+                      }));
+                    }}
+                    className="min-h-20"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {draft.home.expertise.cards.map((card, cardIndex) => (
+                  <div key={`home-expertise-${cardIndex}`} className="border border-cream-200 rounded-xl p-4 space-y-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="font-semibold text-charcoal-800">Expertise Card {cardIndex + 1}</p>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          disabled={cardIndex === 0}
+                          onClick={() => {
+                            setDraft((prev) => ({
+                              ...prev,
+                              home: {
+                                ...prev.home,
+                                expertise: {
+                                  ...prev.home.expertise,
+                                  cards: moveItem(prev.home.expertise.cards, cardIndex, cardIndex - 1),
+                                },
+                              },
+                            }));
+                          }}
+                        >
+                          <ArrowUp className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          disabled={cardIndex === draft.home.expertise.cards.length - 1}
+                          onClick={() => {
+                            setDraft((prev) => ({
+                              ...prev,
+                              home: {
+                                ...prev.home,
+                                expertise: {
+                                  ...prev.home.expertise,
+                                  cards: moveItem(prev.home.expertise.cards, cardIndex, cardIndex + 1),
+                                },
+                              },
+                            }));
+                          }}
+                        >
+                          <ArrowDown className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          onClick={() => {
+                            setDraft((prev) => ({
+                              ...prev,
+                              home: {
+                                ...prev.home,
+                                expertise: {
+                                  ...prev.home.expertise,
+                                  cards: prev.home.expertise.cards.filter((_, i) => i !== cardIndex),
+                                },
+                              },
+                            }));
+                          }}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg overflow-hidden border border-cream-200 bg-cream-50">
+                      <img src={card.image} alt={card.title} className="w-full h-40 object-cover" />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-3">
+                      <Input
+                        value={card.title}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          setDraft((prev) => ({
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              expertise: {
+                                ...prev.home.expertise,
+                                cards: prev.home.expertise.cards.map((current, i) =>
+                                  i === cardIndex ? { ...current, title: value } : current
+                                ),
+                              },
+                            },
+                          }));
+                        }}
+                        placeholder="Card title"
+                      />
+                      <Input
+                        value={card.link}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          setDraft((prev) => ({
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              expertise: {
+                                ...prev.home.expertise,
+                                cards: prev.home.expertise.cards.map((current, i) =>
+                                  i === cardIndex ? { ...current, link: value } : current
+                                ),
+                              },
+                            },
+                          }));
+                        }}
+                        placeholder="Card link"
+                      />
+                    </div>
+
+                    <Textarea
+                      value={card.description}
+                      onChange={(event) => {
+                        const value = event.target.value;
+                        setDraft((prev) => ({
+                          ...prev,
+                          home: {
+                            ...prev.home,
+                            expertise: {
+                              ...prev.home.expertise,
+                              cards: prev.home.expertise.cards.map((current, i) =>
+                                i === cardIndex ? { ...current, description: value } : current
+                              ),
+                            },
+                          },
+                        }));
+                      }}
+                      placeholder="Card description"
+                    />
+
+                    <Input
+                      value={card.image}
+                      onChange={(event) => {
+                        const value = event.target.value;
+                        setDraft((prev) => ({
+                          ...prev,
+                          home: {
+                            ...prev.home,
+                            expertise: {
+                              ...prev.home.expertise,
+                              cards: prev.home.expertise.cards.map((current, i) =>
+                                i === cardIndex ? { ...current, image: value } : current
+                              ),
+                            },
+                          },
+                        }));
+                      }}
+                      placeholder="Card image URL"
+                    />
+
+                    <div className="flex items-center gap-2">
+                      <Upload className="w-4 h-4 text-charcoal-500" />
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        disabled={uploadingField === `home-expertise-${cardIndex}`}
+                        onChange={(event) => {
+                          const file = event.target.files?.[0];
+                          if (!file) {
+                            return;
+                          }
+
+                          void uploadImage(file, `home-expertise-${cardIndex}`, "cms/home/expertise", (url) => {
+                            setDraft((prev) => ({
+                              ...prev,
+                              home: {
+                                ...prev.home,
+                                expertise: {
+                                  ...prev.home.expertise,
+                                  cards: prev.home.expertise.cards.map((current, i) =>
+                                    i === cardIndex ? { ...current, image: url } : current
+                                  ),
+                                },
+                              },
+                            }));
+                          });
+                          event.target.value = "";
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-cream-200 pt-8 space-y-4">
+              <h3 className="font-serif text-xl text-charcoal-800">About Teaser Section</h3>
+              <p className="text-sm text-charcoal-600">This is the section with "Where Vision Meets..." text and two buttons.</p>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Title</label>
+                  <Input
+                    value={draft.home.aboutTeaser.title}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            title: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Highlighted Word</label>
+                  <Input
+                    value={draft.home.aboutTeaser.highlightText}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            highlightText: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-semibold text-charcoal-800">Body Text</label>
+                <Textarea
+                  value={draft.home.aboutTeaser.body}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setDraft((prev) => ({
+                      ...prev,
+                      home: {
+                        ...prev.home,
+                        aboutTeaser: {
+                          ...prev.home.aboutTeaser,
+                          body: value,
+                        },
+                      },
+                    }));
+                  }}
+                  className="min-h-24"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Primary Button Text</label>
+                  <Input
+                    value={draft.home.aboutTeaser.primaryButtonText}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            primaryButtonText: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Primary Button Link</label>
+                  <Input
+                    value={draft.home.aboutTeaser.primaryButtonLink}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            primaryButtonLink: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Secondary Button Text</label>
+                  <Input
+                    value={draft.home.aboutTeaser.secondaryButtonText}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            secondaryButtonText: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">Secondary Button Link</label>
+                  <Input
+                    value={draft.home.aboutTeaser.secondaryButtonLink}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            secondaryButtonLink: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-semibold text-charcoal-800">Teaser Image</label>
+                <div className="rounded-xl overflow-hidden border border-cream-200 bg-cream-50 mb-2">
+                  <img src={draft.home.aboutTeaser.image} alt="About teaser" className="w-full h-52 object-cover" />
+                </div>
+                <div className="space-y-2">
+                  <Input
+                    value={draft.home.aboutTeaser.image}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          aboutTeaser: {
+                            ...prev.home.aboutTeaser,
+                            image: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                  <div className="flex items-center gap-2">
+                    <Upload className="w-4 h-4 text-charcoal-500" />
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      disabled={uploadingField === "home-about-teaser-image"}
+                      onChange={(event) => {
+                        const file = event.target.files?.[0];
+                        if (!file) {
+                          return;
+                        }
+
+                        void uploadImage(file, "home-about-teaser-image", "cms/home/about-teaser", (url) => {
+                          setDraft((prev) => ({
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              aboutTeaser: {
+                                ...prev.home.aboutTeaser,
+                                image: url,
+                              },
+                            },
+                          }));
+                        });
+                        event.target.value = "";
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-cream-200 pt-8 space-y-4">
+              <h3 className="font-serif text-xl text-charcoal-800">Bottom CTA Strip</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">CTA Title</label>
+                  <Input
+                    value={draft.home.ctaStrip.title}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          ctaStrip: {
+                            ...prev.home.ctaStrip,
+                            title: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-charcoal-800">CTA Button Text</label>
+                  <Input
+                    value={draft.home.ctaStrip.buttonText}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setDraft((prev) => ({
+                        ...prev,
+                        home: {
+                          ...prev.home,
+                          ctaStrip: {
+                            ...prev.home.ctaStrip,
+                            buttonText: value,
+                          },
+                        },
+                      }));
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-semibold text-charcoal-800">CTA Subtitle</label>
+                <Textarea
+                  value={draft.home.ctaStrip.subtitle}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setDraft((prev) => ({
+                      ...prev,
+                      home: {
+                        ...prev.home,
+                        ctaStrip: {
+                          ...prev.home.ctaStrip,
+                          subtitle: value,
+                        },
+                      },
+                    }));
+                  }}
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-semibold text-charcoal-800">CTA Button Link</label>
+                <Input
+                  value={draft.home.ctaStrip.buttonLink}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setDraft((prev) => ({
+                      ...prev,
+                      home: {
+                        ...prev.home,
+                        ctaStrip: {
+                          ...prev.home.ctaStrip,
+                          buttonLink: value,
+                        },
+                      },
+                    }));
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -2035,6 +2807,72 @@ export default function AdminPage() {
             {saveMutation.isPending ? "Saving..." : "Save All Changes"}
           </Button>
         </div>
+
+          </div>
+
+          {previewOpen ? (
+            <aside className="hidden xl:block sticky top-24">
+              <section className="bg-white rounded-2xl p-4 shadow-sm border border-cream-200">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h2 className="font-serif text-xl text-charcoal-800">Live Preview</h2>
+                    <p className="text-xs text-charcoal-600">Unsaved changes update here instantly.</p>
+                  </div>
+                  <Button variant="ghost" size="icon" onClick={() => setPreviewOpen(false)}>
+                    <EyeOff className="w-4 h-4" />
+                  </Button>
+                </div>
+
+                <div className="bg-cream-50 border border-cream-200 rounded-2xl p-3 overflow-auto max-h-[calc(100vh-10rem)]">
+                  <div
+                    className={`mx-auto bg-white border border-cream-200 rounded-xl shadow-sm overflow-hidden ${previewDevice === "mobile" ? "max-w-[430px] h-[820px] overflow-y-auto" : "max-w-5xl"}`}
+                  >
+                    {previewDevice === "mobile" ? (
+                      renderFocusedMobilePreview()
+                    ) : (
+                      <CmsPreviewProvider content={draft}>
+                        {renderExactPreview()}
+                      </CmsPreviewProvider>
+                    )}
+                  </div>
+                </div>
+              </section>
+            </aside>
+          ) : null}
+        </div>
+
+        {previewOpen ? (
+          <div className="xl:hidden fixed inset-0 z-40 bg-black/45" onClick={() => setPreviewOpen(false)}>
+            <div
+              className="absolute inset-3 bg-white rounded-2xl border border-cream-200 shadow-xl flex flex-col overflow-hidden"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="p-4 border-b border-cream-200 flex items-center justify-between">
+                <div>
+                  <h2 className="font-serif text-xl text-charcoal-800">Live Preview</h2>
+                  <p className="text-xs text-charcoal-600">Tap outside or close to return to editing.</p>
+                </div>
+                <Button variant="ghost" size="icon" onClick={() => setPreviewOpen(false)}>
+                  <EyeOff className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <div className="flex-1 p-3 bg-cream-50 overflow-auto">
+                <div
+                  className={`mx-auto bg-white border border-cream-200 rounded-xl shadow-sm overflow-hidden ${previewDevice === "mobile" ? "max-w-[430px] h-[820px] overflow-y-auto" : "max-w-5xl"}`}
+                >
+                  {previewDevice === "mobile" ? (
+                    renderFocusedMobilePreview()
+                  ) : (
+                    <CmsPreviewProvider content={draft}>
+                      {renderExactPreview()}
+                    </CmsPreviewProvider>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </main>
     </div>
   );

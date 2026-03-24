@@ -153,6 +153,12 @@
     transition: transform 0.3s ease;
   }
 
+  @media (hover: none) and (pointer: coarse) {
+    .service-card:hover {
+      transform: none;
+    }
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.8s ease-in-out;
   }

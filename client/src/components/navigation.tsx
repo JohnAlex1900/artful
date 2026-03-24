@@ -41,7 +41,7 @@ export default function Navigation() {
   const renderNavLinks = (links: NavLink[], isMobileMenu = false) => (
     <ul
       className={`${
-        isMobileMenu ? "flex flex-col space-y-2" : "flex space-x-6 items-center"
+        isMobileMenu ? "flex flex-col space-y-1" : "flex space-x-6 items-center"
       }`}
     >
       {links.map((link) => {
@@ -74,7 +74,7 @@ export default function Navigation() {
                       : isDarkBackground
                       ? "text-cream-100 hover:text-gold-500"
                       : "text-charcoal-700 hover:text-gold-500"
-                  }`}
+                  } ${isMobileMenu ? "py-2.5 text-base min-h-[44px]" : ""}`}
                 >
                   {link.title}
                   {hasChildren && (
@@ -96,7 +96,7 @@ export default function Navigation() {
               {isMobileMenu && hasChildren && (
                 <button
                   onClick={() => toggleSubmenu(key)}
-                  className="ml-2 focus:outline-none"
+                  className="ml-2 h-10 w-10 inline-flex items-center justify-center rounded-md focus:outline-none touch-manipulation"
                 >
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${
@@ -112,7 +112,7 @@ export default function Navigation() {
               <ul
                 className={`${
                   isMobileMenu
-                    ? `pl-4 mt-2 space-y-2 ${
+                    ? `pl-3 border-l border-cream-300 mt-1 space-y-1 ${
                         openSubmenus[key] ? "block" : "hidden"
                       }`
                     : `absolute top-full left-0 w-48 bg-white dark:bg-charcoal-900 border border-gray-200 dark:border-charcoal-700 rounded-md shadow-lg z-50 transition-all duration-200 ${
@@ -139,7 +139,9 @@ export default function Navigation() {
                     >
                       <Link
                         href={child.link || "#"}
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-charcoal-800 flex justify-between items-center"
+                        className={`block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-charcoal-800 flex justify-between items-center ${
+                          isMobileMenu ? "text-sm min-h-[44px]" : ""
+                        }`}
                         onClick={() => {
                           if (isMobileMenu && childHasChildren)
                             toggleSubmenu(childKey);
@@ -166,7 +168,7 @@ export default function Navigation() {
                         <ul
                           className={`${
                             isMobileMenu
-                              ? `pl-4 mt-2 space-y-2 ${
+                              ? `pl-3 border-l border-cream-300 mt-1 space-y-1 ${
                                   openSubmenus[childKey] ? "block" : "hidden"
                                 }`
                               : `absolute top-0 left-full mt-0 w-48 bg-white dark:bg-charcoal-900 border border-gray-200 dark:border-charcoal-700 rounded-md shadow-lg z-50 transition-all duration-200 ${
@@ -180,7 +182,7 @@ export default function Navigation() {
                             <li key={subChild.title}>
                               <Link
                                 href={subChild.link || "#"}
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-charcoal-800"
+                                className="block px-3 py-2 rounded-lg text-sm min-h-[44px] hover:bg-gray-100 dark:hover:bg-charcoal-800"
                                 onClick={() =>
                                   isMobileMenu && setMobileMenuOpen(false)
                                 }
@@ -205,7 +207,7 @@ export default function Navigation() {
   return (
     <nav className={navBarClasses}>
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" data-testid="link-home">
             <div className={logoClasses}>
@@ -235,9 +237,9 @@ export default function Navigation() {
               size="icon"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               data-testid="button-mobile-menu"
-              className={
+              className={`h-11 w-11 touch-manipulation ${
                 isDarkBackground ? "text-cream-100 hover:text-gold-500" : ""
-              }
+              }`}
             >
               {mobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -250,14 +252,14 @@ export default function Navigation() {
 
         {isMobile && mobileMenuOpen && (
           <div
-            className={`py-4 border-t ${
+            className={`py-4 border-t max-h-[70vh] overflow-y-auto ${
               isDarkBackground ? "border-charcoal-700" : "border-cream-300"
             }`}
             data-testid="mobile-menu"
           >
             {renderNavLinks(NAV_LINKS ?? [], true)}
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="bg-gold-500 text-white hover:bg-gold-600 w-full mt-4">
+              <Button className="bg-gold-500 text-white hover:bg-gold-600 w-full mt-4 min-h-[44px] touch-manipulation">
                 Get Consultation
               </Button>
             </Link>

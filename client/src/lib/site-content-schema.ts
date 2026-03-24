@@ -8,6 +8,37 @@ export const heroSlideSchema = z.object({
   ctaLink: z.string().min(1),
 });
 
+export const homeExpertiseCardSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+  image: z.string().url(),
+  link: z.string().min(1),
+});
+
+export const homeExpertiseSchema = z.object({
+  title: z.string().min(1),
+  subtitle: z.string().min(1),
+  cards: z.array(homeExpertiseCardSchema).min(1),
+});
+
+export const homeAboutTeaserSchema = z.object({
+  title: z.string().min(1),
+  highlightText: z.string().min(1),
+  body: z.string().min(1),
+  primaryButtonText: z.string().min(1),
+  primaryButtonLink: z.string().min(1),
+  secondaryButtonText: z.string().min(1),
+  secondaryButtonLink: z.string().min(1),
+  image: z.string().url(),
+});
+
+export const homeCtaStripSchema = z.object({
+  title: z.string().min(1),
+  subtitle: z.string().min(1),
+  buttonText: z.string().min(1),
+  buttonLink: z.string().min(1),
+});
+
 export const portfolioProjectSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
@@ -68,6 +99,9 @@ export const servicesCard = z.object({
 export const siteContentSchema = z.object({
   home: z.object({
     heroSlides: z.array(heroSlideSchema).min(1),
+    expertise: homeExpertiseSchema,
+    aboutTeaser: homeAboutTeaserSchema,
+    ctaStrip: homeCtaStripSchema,
   }),
   portfolio: z.object({
     projects: z.array(portfolioProjectSchema).min(1),
@@ -96,6 +130,7 @@ export const siteContentSchema = z.object({
 });
 
 export type HeroSlide = z.infer<typeof heroSlideSchema>;
+export type HomeExpertiseCard = z.infer<typeof homeExpertiseCardSchema>;
 export type PortfolioProject = z.infer<typeof portfolioProjectSchema>;
 export type ContactPerson = z.infer<typeof contactPerson>;
 export type OfficeLocation = z.infer<typeof officeLocation>;

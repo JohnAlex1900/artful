@@ -75,7 +75,7 @@ export default function PortfolioModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="max-w-5xl w-full max-h-[90vh] overflow-y-auto p-0"
+        className="max-w-5xl w-[95vw] md:w-full max-h-[90vh] overflow-y-auto p-0"
         data-testid="modal-portfolio"
       >
         <DialogTitle className="sr-only">
@@ -90,7 +90,7 @@ export default function PortfolioModal({
             onTouchEnd={handleTouchEnd}
           >
             <button
-              className="absolute top-5 right-5 text-white"
+              className="absolute top-4 right-4 md:top-5 md:right-5 text-white p-2 md:p-0 rounded-full bg-black/30 md:bg-transparent"
               onClick={closeFullscreen}
             >
               <X className="h-8 w-8" />
@@ -98,7 +98,7 @@ export default function PortfolioModal({
 
             {showPrev && (
               <button
-                className="absolute left-5 text-white"
+                className="absolute left-2 md:left-5 text-white p-2 md:p-0 rounded-full bg-black/30 md:bg-transparent"
                 onClick={() => setFullscreenIndex(fullscreenIndex - 1)}
               >
                 <ChevronLeft className="h-12 w-12" />
@@ -109,11 +109,12 @@ export default function PortfolioModal({
               src={project.images[fullscreenIndex]}
               alt={`${project.title} - image ${fullscreenIndex + 1}`}
               className="max-h-full max-w-full object-contain rounded-md shadow-lg transition-all"
+              decoding="async"
             />
 
             {showNext && (
               <button
-                className="absolute right-5 text-white"
+                className="absolute right-2 md:right-5 text-white p-2 md:p-0 rounded-full bg-black/30 md:bg-transparent"
                 onClick={() => setFullscreenIndex(fullscreenIndex + 1)}
               >
                 <ChevronRight className="h-12 w-12" />
@@ -122,14 +123,14 @@ export default function PortfolioModal({
           </div>
         )}
 
-        <div className="p-8">
+        <div className="p-4 md:p-8">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
               <div className="text-sm text-gold-500 font-medium mb-2">
                 {project.category}
               </div>
-              <h3 className="font-serif text-3xl font-bold text-charcoal-800">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-charcoal-800 leading-tight pr-4">
                 {project.title}
               </h3>
             </div>
@@ -151,19 +152,21 @@ export default function PortfolioModal({
                 key={idx}
                 src={img}
                 alt={`${project.title} - image ${idx + 1}`}
-                className="w-full h-64 object-cover rounded-xl shadow-md cursor-pointer hover:scale-105 transition-transform"
+                className="w-full h-52 md:h-64 object-cover rounded-xl shadow-md cursor-pointer hover:scale-105 transition-transform"
                 onClick={() => openFullscreen(idx)}
+                loading="lazy"
+                decoding="async"
               />
             ))}
           </div>
 
           {/* Project Details */}
-          <div className="grid md:grid-cols-2 gap-8 mb-6">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-6">
             <div>
               <h4 className="font-semibold text-charcoal-800 mb-4">
                 Project Details
               </h4>
-              <div className="space-y-3 text-charcoal-600">
+              <div className="space-y-2 md:space-y-3 text-sm md:text-base text-charcoal-600">
                 {project.location && (
                   <div className="flex justify-between">
                     <span>Location:</span>
@@ -196,7 +199,7 @@ export default function PortfolioModal({
                 About This Project
               </h4>
               <div
-                className="text-charcoal-600 leading-relaxed"
+                className="text-sm md:text-base text-charcoal-600 leading-relaxed"
                 data-testid="text-modal-description"
               >
                 {project.description}

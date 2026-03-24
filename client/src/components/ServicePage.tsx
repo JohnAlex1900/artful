@@ -3,8 +3,7 @@ import { useLocation } from "wouter";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Footer from "@/components/footer"; // Your footer component
 import Reveal from "@/components/reveal";
-import { useQuery } from "@tanstack/react-query";
-import { getSiteContent } from "@/lib/cms";
+import { useResolvedSiteContent } from "@/lib/cms-preview";
 import type { ServiceNode } from "@/lib/site-content-schema";
 
 interface GalleryServicePageProps {
@@ -37,14 +36,9 @@ export default function ServicePage({
 }: GalleryServicePageProps) {
   const [location] = useLocation();
   const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
-  const { data: siteContent } = useQuery({
-    queryKey: ["site-content"],
-    queryFn: getSiteContent,
-  });
+  const siteContent = useResolvedSiteContent();
 
-  const serviceOverride = siteContent
-    ? findServiceByTitle(siteContent.services, title)
-    : null;
+  const serviceOverride = findServiceByTitle(siteContent.services, title);
 
   const resolvedTitle = serviceOverride?.title ?? title;
   const resolvedDescription = serviceOverride?.description ?? description;
@@ -94,20 +88,20 @@ export default function ServicePage({
   return (
     <div className="min-h-screen pt-20 bg-cream-50">
       {/* Title Section */}
-      <section className="py-20 text-center">
+      <section className="py-14 md:py-20 text-center">
         <Reveal>
-          <h1 className="font-serif text-5xl md:text-6xl font-bold text-charcoal-800 mb-6">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl font-bold text-charcoal-800 mb-4 md:mb-6 leading-tight px-2">
             {resolvedTitle}
           </h1>
-          <p className="text-xl text-charcoal-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-charcoal-600 max-w-3xl mx-auto leading-relaxed px-2">
             {resolvedDescription}
           </p>
         </Reveal>
       </section>
 
       {/* Gallery */}
-      <section className="py-10 container mx-auto px-4 lg:px-8">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <section className="pb-12 md:pb-16 container mx-auto px-4 lg:px-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {resolvedImages.map((img, idx) => (
             <Reveal key={idx} delay={idx * 0.1}>
               <div
@@ -117,7 +111,9 @@ export default function ServicePage({
                 <img
                   src={img}
                   alt={`${resolvedTitle} ${idx + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-56 md:h-64 object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </Reveal>
@@ -146,6 +142,7 @@ export default function ServicePage({
             src={resolvedImages[fullscreenIndex]}
             alt={`${resolvedTitle} fullscreen`}
             className="max-w-full max-h-full object-contain"
+            decoding="async"
           />
 
           <button

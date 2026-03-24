@@ -100,7 +100,7 @@ export default function HeroSection({
 
   return (
     <section
-      className="relative w-full h-[80vh] md:h-[90vh] bg-black overflow-hidden"
+      className="relative w-full h-[78vh] min-h-[560px] md:h-[90vh] bg-black overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={onTouchStart}
@@ -119,6 +119,8 @@ export default function HeroSection({
               alt={s.headline}
               className="w-full h-full object-cover"
               loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : "auto"}
+              decoding="async"
             />
 
             {/* Gradient overlay to ensure text contrast */}
@@ -126,19 +128,19 @@ export default function HeroSection({
 
             {/* Content */}
             <div className="absolute inset-0 flex items-center">
-              <div className="max-w-3xl mx-6 md:mx-12 lg:mx-20 text-white">
-                <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 drop-shadow">
+              <div className="max-w-3xl mx-4 sm:mx-6 md:mx-12 lg:mx-20 text-white">
+                <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-3 md:mb-4 drop-shadow">
                   {s.headline}
                 </h1>
                 {s.subheadline && (
-                  <p className="text-lg md:text-xl text-white/90 mb-6 max-w-lg">
+                  <p className="text-base md:text-xl text-white/90 mb-5 md:mb-6 max-w-lg leading-relaxed">
                     {s.subheadline}
                   </p>
                 )}
 
                 <div className="flex flex-wrap gap-4">
                   <Link href={s.ctaLink ?? "/portfolio"}>
-                    <a className="inline-block px-6 py-3 rounded-2xl bg-gold-500 text-charcoal-900 font-semibold shadow hover:bg-gold-600 transition">
+                    <a className="inline-block px-5 md:px-6 py-3 rounded-2xl bg-gold-500 text-charcoal-900 font-semibold shadow hover:bg-gold-600 transition w-full sm:w-auto text-center">
                       {s.ctaText ?? "Explore Our Work"}
                     </a>
                   </Link>
@@ -155,7 +157,7 @@ export default function HeroSection({
           <button
             aria-label="Previous slide"
             onClick={goPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/40 p-2 hover:bg-black/60 text-white"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/45 p-2 hover:bg-black/60 text-white"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -163,7 +165,7 @@ export default function HeroSection({
           <button
             aria-label="Next slide"
             onClick={goNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/40 p-2 hover:bg-black/60 text-white"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 rounded-full bg-black/45 p-2 hover:bg-black/60 text-white"
           >
             <ChevronRight className="w-6 h-6" />
           </button>

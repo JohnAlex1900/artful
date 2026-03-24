@@ -15,7 +15,7 @@ export default function ServiceCard({
   link,
 }: ServiceCardProps) {
   return (
-    <Card className="service-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+    <Card className="service-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
       <CardContent className="p-0">
         <Link
           href={link}
@@ -25,13 +25,15 @@ export default function ServiceCard({
             <img
               src={image}
               alt={title}
-              className="w-full h-48 object-cover rounded-t-2xl"
+              className="w-full h-44 md:h-48 object-cover rounded-t-2xl"
+              loading="lazy"
+              decoding="async"
             />
-            <div className="p-8">
-              <h3 className="font-serif text-2xl font-semibold text-charcoal-800 mb-4">
+            <div className="p-5 md:p-8">
+              <h3 className="font-serif text-xl md:text-2xl font-semibold text-charcoal-800 mb-3 md:mb-4">
                 {title}
               </h3>
-              <p className="text-charcoal-600 mb-6">{description}</p>
+              <p className="text-sm md:text-base text-charcoal-600 mb-4 md:mb-6 leading-relaxed">{description}</p>
               <span className="text-gold-500 font-semibold hover:text-gold-600 transition-colors">
                 View Projects →
               </span>

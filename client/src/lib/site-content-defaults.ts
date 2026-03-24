@@ -43,6 +43,65 @@ const defaultHeroSlides = [
   },
 ];
 
+const defaultHomeExpertise = {
+  title: "Our Expertise",
+  subtitle:
+    "We specialize in creating exceptional spaces across residential, commercial, and hospitality sectors",
+  cards: [
+    {
+      title: "Residential",
+      description:
+        "Transform your home into a personal sanctuary that reflects your lifestyle and aesthetic preferences.",
+      image:
+        "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTI5ODM3MTIyMzk0MjM5OTU5Mg%3D%3D/original/6b43c6d4-1feb-416f-b78e-55d0b76f009d.jpeg?im_w=720",
+      link: "/portfolio",
+    },
+    {
+      title: "Commercial",
+      description:
+        "Create productive work environments that inspire teams and impress clients with sophisticated design.",
+      image:
+        "https://furniturepalacekenya.com/wp-content/uploads/2024/01/0O2A3656.jpg",
+      link: "/portfolio",
+    },
+    {
+      title: "Hospitality",
+      description:
+        "Design memorable experiences for guests with luxurious and functional hospitality spaces.",
+      image:
+        "https://plus.unsplash.com/premium_photo-1661881436846-5a0f53025711?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG90ZWwlMjBsb2JieXxlbnwwfHwwfHx8MA%3D%3D",
+      link: "/portfolio",
+    },
+    {
+      title: "Transformations",
+      description:
+        "Breathe new life into existing spaces with strategic renovations and creative reimagining.",
+      image: "https://i.insider.com/5e84cd862d654f1e5a5b65ba?width=700",
+      link: "/portfolio",
+    },
+  ],
+};
+
+const defaultHomeAboutTeaser = {
+  title: "Where Vision Meets Excellence",
+  highlightText: "Excellence",
+  body:
+    "With over a decade of experience in transforming spaces, Artful Structures Limited combines innovative design thinking with meticulous attention to detail. We believe that every space tells a story, and we're here to help you tell yours beautifully.",
+  primaryButtonText: "Read Our Story",
+  primaryButtonLink: "/about",
+  secondaryButtonText: "Our Process",
+  secondaryButtonLink: "/design-process",
+  image: "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg",
+};
+
+const defaultHomeCtaStrip = {
+  title: "Ready to Transform Your Space?",
+  subtitle:
+    "Let's bring your vision to life with our expert design services and personalized approach",
+  buttonText: "Contact Us Today",
+  buttonLink: "/contact",
+};
+
 const defaultAbout = {
   heroTitle: "About Artful Structures Limited",
   heroSubtitle:
@@ -232,6 +291,9 @@ const defaultServicesLanding = {
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   home: {
     heroSlides: defaultHeroSlides,
+    expertise: defaultHomeExpertise,
+    aboutTeaser: defaultHomeAboutTeaser,
+    ctaStrip: defaultHomeCtaStrip,
   },
   portfolio: {
     projects: PORTFOLIO_PROJECTS,
